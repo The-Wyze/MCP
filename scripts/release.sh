@@ -38,7 +38,7 @@ if [ "$DRY" = 0 ]; then
     git diff --quiet && git diff --cached --quiet || fail "commit or stash your changes first"
 fi
 
-current="$(sed -n "s/^export const MCP_SERVER_VERSION = '\(.*\)';/\1/p" "$REG")"
+current="$(grep -E '^export const MCP_SERVER_VERSION' "$REG" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' || true)"
 [ -n "$current" ] || fail "no MCP_SERVER_VERSION in $REG"
 next="$current"
 if [ -n "$BUMP" ]; then
@@ -61,7 +61,7 @@ if [ "$next" != "$current" ]; then
         python3 - "$REG" "$next" <<'PY'
 import pathlib, re, sys
 p = pathlib.Path(sys.argv[1]); s = p.read_text()
-s2 = re.sub(r"^export const MCP_SERVER_VERSION = '.*';", f"export const MCP_SERVER_VERSION = '{sys.argv[2]}';", s, count=1, flags=re.M)
+s2 = re.sub(r"^(export const MCP_SERVER_VERSION = )(['\"]).*?\2;", lambda m: f"{m[1]}{m[2]}{sys.argv[2]}{m[2]};", s, count=1, flags=re.M)
 assert s2 != s, 'version line not found'
 p.write_text(s2)
 PY
@@ -121,13 +121,13 @@ if [ "$PUSH" = 1 ]; then
     git push origin main --follow-tags
     echo
     echo "Pushed. The publish workflow is now waiting for thewyze.com to serve $next:"
-    echo "  gh run watch -R TheWyze/MCP"
+    echo "  gh run watch -R The-Wyze/MCP"
 else
     echo "Not pushed (--no-push). When ready: git push origin main --follow-tags"
 fi
 if [ "$next" != "$current" ]; then
     echo "Still yours in the app: commit src/lib/mcp/serverInfo.ts, then deploy the Front-End. The workflow publishes once"
-    echo "the live card says $next (it waits 30 minutes; after that, re-run it: gh workflow run publish.yml -R TheWyze/MCP)."
+    echo "the live card says $next (it waits 30 minutes; after that, re-run it: gh workflow run publish.yml -R The-Wyze/MCP)."
 else
     echo "If the app is not deployed yet: deploy the Front-End. The workflow waits 30 minutes for the live card to say $next."
 fi

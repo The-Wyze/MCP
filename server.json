@@ -1,0 +1,34 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.thewyze/blog",
+  "title": "The Wyze Blog",
+  "description": "The Wyze blog: guaranteed rent, temporary accommodation and property management articles for UK letting agents.",
+  "version": "1.0.0",
+  "websiteUrl": "https://thewyze.com",
+  "repository": {
+    "url": "https://github.com/The-Wyze/MCP",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://thewyze.com/static/favicon/web-app-manifest-192x192.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "192x192"
+      ]
+    },
+    {
+      "src": "https://thewyze.com/static/favicon/web-app-manifest-512x512.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://thewyze.com/api/mcp"
+    }
+  ]
+}

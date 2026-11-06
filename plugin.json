@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "thewyze",
+  "version": "1.0.0",
+  "description": "The Wyze blog: guaranteed rent, temporary accommodation and property management articles for UK letting agents. Read-only, no login.",
+  "author": { "name": "Wise Systems Limited (The Wyze)", "email": "info@thewyze.com", "url": "https://thewyze.com" },
+  "homepage": "https://thewyze.com/blog",
+  "repository": "https://github.com/The-Wyze/MCP",
+  "license": "MIT",
+  "keywords": ["mcp", "property-management", "letting-agents", "guaranteed-rent", "uk", "blog", "read-only"]
+}

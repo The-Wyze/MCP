@@ -48,8 +48,8 @@ jobs:
             fv=$(jq -r .version "$f")
             [ "$fv" = "$v" ] || { echo "::error::$f says $fv but server.json says $v — run scripts/release.sh"; exit 1; }
           done
-          code=$(sed -n "s/^export const MCP_SERVER_VERSION = '\(.*\)';/\1/p" src/server/mcp/registry.ts)
-          [ "$code" = "$v" ] || { echo "::error::src/server/mcp/registry.ts says $code but server.json says $v — run scripts/release.sh"; exit 1; }
+          code=$(grep -E '^export const MCP_SERVER_VERSION' src/lib/mcp/serverInfo.ts | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' || true)
+          [ "$code" = "$v" ] || { echo "::error::src/lib/mcp/serverInfo.ts says $code but server.json says $v — run scripts/release.sh"; exit 1; }
           case "$GITHUB_REF" in
             refs/tags/*) [ "$GITHUB_REF" = "refs/tags/v$v" ] || { echo "::error::tag ${GITHUB_REF#refs/tags/} does not match version $v"; exit 1; } ;;
           esac
