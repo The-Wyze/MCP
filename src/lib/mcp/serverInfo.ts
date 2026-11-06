@@ -11,7 +11,7 @@ export const MCP_REGISTRY_NAME = "com.thewyze/blog";
 
 export const MCP_ENDPOINT = `${SITE_URL}/api/mcp`;
 
-export const MCP_SERVER_DESCRIPTION = `${SITE_NAME} blog: guaranteed rent, temporary accommodation and property management articles for UK letting agents.`;
+export const MCP_SERVER_DESCRIPTION = `${SITE_NAME} blog: guaranteed rent, temporary accommodation and lettings guides for UK letting agents.`;
 
 /** The registry's server.json schema; bump with the mcp-publisher version in MCP/.github/workflows/publish.yml. */
 export const MCP_SERVER_SCHEMA =

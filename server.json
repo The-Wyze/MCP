@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.thewyze/blog",
   "title": "The Wyze Blog",
-  "description": "The Wyze blog: guaranteed rent, temporary accommodation and property management articles for UK letting agents.",
+  "description": "The Wyze blog: guaranteed rent, temporary accommodation and lettings guides for UK letting agents.",
   "version": "1.0.0",
   "websiteUrl": "https://thewyze.com",
   "repository": {
